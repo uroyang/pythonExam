@@ -35,31 +35,31 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit(0)
-        if event.type == pygame.KEYDOWN:
-            if event.type == pygame.K_w:
-                keys[0] = True
-            elif event.type == pygame.K_a:
-                keys[1] = True
-            elif event.type == pygame.K_s:
-                keys[2] = True
-            elif event.type == pygame.K_d:
-                keys[3] = True
-        if event.type == pygame.KEYUP:
-            if event.type == pygame.K_w:
-                keys[0] = False
-            elif event.type == pygame.K_a:
-                keys[1] = False
-            elif event.type == pygame.K_s:
-                keys[2] = False
-            elif event.type == pygame.K_d:
-                keys[3] = False
 
-    # 플레이어 움직이기
-    if keys[0]:
-        playpos[1] -= 5
-    elif keys[2]:
-        playpos[1] += 5
-    elif keys[1]:
-        playpos[0] -= 5
-    elif keys[3]:
-        playpos[0] += 5
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                keys[0] = True
+            elif event.key == pygame.K_a:
+                keys[1] = True
+            elif event.key == pygame.K_s:
+                keys[2] = True
+            elif event.key == pygame.K_d:
+                keys[3] = True
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w:
+                keys[0] = False
+            elif event.key == pygame.K_a:
+                keys[1] = False
+            elif event.key == pygame.K_s:
+                keys[2] = False
+            elif event.key == pygame.K_d:
+                keys[3] = False
+        if keys[0]:
+            playpos[1] = playpos[1] - 5
+        elif keys[2]:
+            playpos[1] = playpos[1] + 5
+        elif keys[1]:
+            playpos[0] = playpos[0] - 5
+        elif keys[3]:
+            playpos[0] = playpos[0] + 5
