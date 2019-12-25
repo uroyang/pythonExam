@@ -1,4 +1,6 @@
 # pygame 이하는 함수의 라이브러리 import
+import math
+
 import pygame
 
 fps = 30
@@ -12,7 +14,7 @@ grass = pygame.image.load('resources\images\grass.png')
 castle = pygame.image.load('resources\images\castle.png')
 
 keys = [False, False, False, False]
-playpos = [100, 200]
+playerpos = [100, 200]
 # 계속 화면을 보이게 한다
 while True:
     # 화면을 깨끗하게 한다
@@ -27,7 +29,14 @@ while True:
     screen.blit(castle, (0, 240))
     screen.blit(castle, (0, 345))
 
-    screen.blit(player, playpos)
+    screen.blit(player, playerpos)
+
+    # 플레이어 회전
+    position = pygame.mouse.get_pos()
+    angle = math.atan2(position[1] - (playerpos[1] + 32), position[0] - (playerpos[0] + 26))
+    playerrot = pygame.transform.rotate(player, 360 - angle * 57.29)
+    playerpos1 = (playerpos[0] - playerrot.get_rect().width // 2, playerpos[1] - playerrot.get_rect().height // 2)
+    screen.blit(playerrot, playerpos1)
     # 게임을 다시 그린다.
     pygame.display.flip()
     # 게임을 종료한다
@@ -56,10 +65,10 @@ while True:
             elif event.key == pygame.K_d:
                 keys[3] = False
         if keys[0]:
-            playpos[1] = playpos[1] - 5
+            playerpos[1] = playerpos[1] - 5
         elif keys[2]:
-            playpos[1] = playpos[1] + 5
+            playerpos[1] = playerpos[1] + 5
         elif keys[1]:
-            playpos[0] = playpos[0] - 5
+            playerpos[0] = playerpos[0] - 5
         elif keys[3]:
-            playpos[0] = playpos[0] + 5
+            playerpos[0] = playerpos[0] + 5
